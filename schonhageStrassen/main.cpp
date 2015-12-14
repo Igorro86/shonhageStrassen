@@ -8,12 +8,10 @@ using namespace std;
 int main()
 {
     /* fft based on algorithm from page: http://www.relisoft.com/science/physics/fft.html */
-    /* set q i s values below and in fft.h header file*/
-
     int Q=337;
     int S=85;
 
-    ModOperations modular(337);
+    ModOperations modular(Q);
     int PointsNumber = 8;
     int Xtemp[PointsNumber];
 
