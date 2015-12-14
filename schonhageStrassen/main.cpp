@@ -37,7 +37,7 @@ int main()
     t.Transform(FORWARD);
     t2.Transform(FORWARD);
 
-    printf("sum: \n");
+    printf("multiplipation: \n");
 
     /* multiplication of transforms results and putting them to the next transform*/
 
