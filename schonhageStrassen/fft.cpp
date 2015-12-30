@@ -6,10 +6,8 @@
 
 // Points must be a power of 2
 Fft::Fft (int Points, int Qm, int Nroot)
-    : _PointsNum (Points),_Qm(Qm),_Nroot(Nroot)
+    : _PointsNum (Points),_Qm(Qm),_Nroot(Nroot),modular(_Qm)
 {
-
-    ModOperations modular(_Qm);
     _sqrtPoints = sqrt((double)_PointsNum);
     // calculate binary log
     _logPoints = 0;
@@ -86,7 +84,6 @@ void Fft::Transform (bool invert)
 {
     // step = 2 ^ (level-1)
     // increm = 2 ^ level;
-    ModOperations modular(_Qm);
 
     int step = 1;
     for (int level = 1; level <= _logPoints; level++)
@@ -140,3 +137,27 @@ void Fft::PutAt (int i, double val)
     _X [_aBitRev[i]] = val;
 }
 
+void Fft::PutVector (std::vector<int> number)
+{
+    for(int i=0; i<number.size();i++)
+    {
+        PutAt(i,number[i]);
+    }
+}
+
+void Fft::PutTransformResult (Fft transform)
+{
+    int transformSize=sizeof(transform._X);
+    for(int i=0; i<transformSize;i++)
+    {
+        PutAt(i,transform._X[i]);
+    }
+}
+
+void Fft::MultiplicateAndAssign (Fft transform)
+{
+    for(int i=0;i<_PointsNum;i++)
+    {
+         this->_X[i]=modular.Multiplicate(this->_X[i],transform._X[i]);
+    }
+}
