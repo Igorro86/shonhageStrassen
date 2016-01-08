@@ -44,22 +44,27 @@ void integerfilehandler::calculatePieceLength()
 std::vector < int > integerfilehandler::getPointsSetVect()
 {
     std::vector < int > integervect;
-    if(loadedfile->tellg()>=_length || loadedfile->tellg()==-1 )
-    {
-         integervect.push_back(-1);
-         loadedfile->close();
-         return integervect;
-    }
 
     char * buffer = new char [_piecelength];
-    loadedfile->read(buffer,_piecelength);
 
-    for(int i=0; i<_piecelength;i++)
+    while(loadedfile->tellg()<_length && loadedfile->tellg()!=-1)
     {
-        int loadednumber=int(buffer[i]-'0');
-        loadednumber >= 0 ? integervect.push_back(int(buffer[i]-'0')) : integervect.push_back(0);
+        loadedfile->read(buffer,_piecelength);
+        int loadednumber=0;
+        for(int i=0; i<_piecelength;i++)
+        {
+            int loadeddigit=int(buffer[i]-'0');
+            loadeddigit >= 0 ? loadednumber+=loadeddigit*(int)pow(10,_piecelength-i-1) : loadednumber+=0;
+        }
+        integervect.insert(integervect.begin(),loadednumber);
     }
 
     delete[] buffer;
     return integervect;
+}
+
+
+int integerfilehandler::getIntegerLength()
+{
+    return _length;
 }

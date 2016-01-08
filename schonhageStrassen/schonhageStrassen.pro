@@ -7,7 +7,8 @@ SOURCES += main.cpp \
     modoperations.cpp \
     numberpiece.cpp \
     integerfile.cpp \
-    integerfilehandler.cpp
+    integerfilehandler.cpp \
+    carringhandler.cpp
 SOURCES += fft.cpp
 
 HEADERS += fft.h \
@@ -15,5 +16,6 @@ HEADERS += fft.h \
     main.h \
     numberpiece.h \
     integerfile.h \
-    integerfilehandler.h
+    integerfilehandler.h \
+    carringhandler.h
 

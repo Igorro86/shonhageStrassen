@@ -9,12 +9,13 @@ class integerfilehandler
 public:
     integerfilehandler(std::string path);
     void initialize();
-    void calculatePieceLength();
+    int getIntegerLength();
     std::vector < int > getPointsSetVect();
 private:
     std::string _path;
     int _length, _piecelength;
     integerfile* loadedfile;
+    void calculatePieceLength();
 };
 
 #endif // INTEGERHANDLER_H
