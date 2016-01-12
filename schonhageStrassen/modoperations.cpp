@@ -1,4 +1,5 @@
 #include "modoperations.h"
+#include <math.h>
 
 ModOperations::ModOperations(int q)
 {
@@ -35,3 +36,67 @@ int ModOperations::Negative(int x)
     x = (_q-x) % _q;
     return x;
 }
+
+//input is N-number of digits, output is prime number q
+int ModOperations::qFinder(int x)
+{
+    int qmin=(x/2)*81;
+    int q;
+    bool qchecker=false;
+        while(qchecker!=true)
+        {
+            bool primechecker=false;
+            int round_down=0;
+                while(primechecker!=true)
+                {
+                    qmin=qmin+1;
+                    round_down=floor(sqrt(qmin));
+                        for (int l=2; l<=round_down; l++)
+                        {
+                            if(qmin%l==0)
+                               break;
+                            if(l==round_down)
+                            {
+                                //int qprime=qmin;
+                                primechecker=true;
+                                break;
+                            }
+                        }
+
+                }
+            //check if q as a prime number is good choice
+            //q must have N odd roots of unity, it happens when N is divisor of qmin-1
+            if ((qmin-1)%x==0)
+            {
+                q=qmin;
+                qchecker=true;
+            }
+            else
+            {
+                primechecker=false;
+            }
+        }
+    return q;
+}
+
+//finding lowest root of unity s, inputs are N and q, output is s
+int ModOperations::RootOfUnity(int x, int y)
+{
+    int j=2;
+    bool rootofunity=false;
+        while(rootofunity!=true)
+        {
+            if ((int)pow(j,x)%y==1)
+            {
+               rootofunity=true;
+            }
+            else
+            {
+                j=j+1;
+            }
+        }
+    return j;
+}
+
+
+

@@ -5,6 +5,7 @@
 #include "integerfilehandler.h"
 #include <vector>
 #include "carringhandler.h"
+#include "modoperations.h"
 
 using namespace std;
 
@@ -13,11 +14,13 @@ int main()
 {
     integerfilehandler intreader1("liczba.txt");
     integerfilehandler intreader2("liczba2.txt");
-
-    /* fft based on algorithm from page: http://www.relisoft.com/science/physics/fft.html */
-    int Q=337;
-    int S=85;
     int PointsNumber = 8;
+    int Q=ModOperations::qFinder(PointsNumber);
+    ModOperations mod(Q);
+    /* fft based on algorithm from page: http://www.relisoft.com/science/physics/fft.html */
+    //int Q=337;
+    //int S=85;
+    int S=mod.RootOfUnity(PointsNumber,Q);
 
     int* resultarray;
     std::vector < int > integer1=intreader1.getPointsSetVect();
