@@ -9,6 +9,8 @@ public:
     int Add(int x,int y);
     int Invert(int x);
     int Negative(int x);
+    static int qFinder(int x);
+    int RootOfUnity(int x,int y);
  private:
     int _q;
 };
