@@ -11,6 +11,7 @@ public:
     int Negative(int x);
     static int qFinder(int x);
     int RootOfUnity(int x,int y);
+    long Pow(int x,int y);
  private:
     int _q;
 };

@@ -31,11 +31,7 @@ Fft::Fft (int Points, int Qm, int Nroot)
     _IW = new int [_PointsNum/2];
     for ( int i = 0; i < _PointsNum/2; i++ )
     {
-        int re=1;
-        for(int k=0;k<i;k++)
-        {
-            re=modular.Multiplicate(re,_Nroot);
-        }
+        int re=modular.Pow(_Nroot,i);
         _W[i] = re;
         _IW[i] = modular.Invert(re);
     }
@@ -158,6 +154,8 @@ void Fft::MultiplicateAndAssign (Fft transform)
 {
     for(int i=0;i<_PointsNum;i++)
     {
+          printf(" vec1 %d \n", this->_X[i]);
+          printf(" vec2 %d \n", transform._X[i]);
          this->_X[i]=modular.Multiplicate(this->_X[i],transform._X[i]);
     }
 }
