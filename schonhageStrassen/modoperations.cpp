@@ -18,6 +18,16 @@ int ModOperations::Add(int x,int y)
     return result % _q;
 }
 
+long ModOperations::Pow(int x,int y)
+{
+    long result=1;
+    for(int k=0;k<y;k++)
+    {
+        result=this->Multiplicate(result,x);
+    }
+    return result % _q;
+}
+
 int ModOperations::Invert(int x)
 {
     int multiplier=0;
@@ -40,7 +50,7 @@ int ModOperations::Negative(int x)
 //input is N-number of digits, output is prime number q
 int ModOperations::qFinder(int x)
 {
-    int qmin=(x/2)*81;
+    int qmin=(x/2)*99999999999999999;
     int q;
     bool qchecker=false;
         while(qchecker!=true)
@@ -86,7 +96,7 @@ int ModOperations::RootOfUnity(int x, int y)
     bool rootofunity=false;
         while(rootofunity!=true)
         {
-            if ((int)pow(j,x)%y==1)
+            if (this->Pow(j,x)==1)
             {
                rootofunity=true;
             }

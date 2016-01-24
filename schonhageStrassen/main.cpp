@@ -14,12 +14,13 @@ int main()
 {
     integerfilehandler intreader1("liczba.txt");
     integerfilehandler intreader2("liczba2.txt");
-    int PointsNumber = 8;
+    int PointsNumber = 16;
     int Q=ModOperations::qFinder(PointsNumber);
-    ModOperations mod(Q);
     /* fft based on algorithm from page: http://www.relisoft.com/science/physics/fft.html */
     //int Q=337;
     //int S=85;
+
+    ModOperations mod(Q);
     int S=mod.RootOfUnity(PointsNumber,Q);
 
     int* resultarray;
